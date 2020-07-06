@@ -1,7 +1,7 @@
 let someText = `some text
 again and again. this is a sample text
 we are using for this assignment
-a cat goes up and up on a tree. a dog is barking
+a cat goes up and up on a tree. a dog Is barking
 some text again for the assignment`;
 
 console.log("\n-------------Original Text--------------");
