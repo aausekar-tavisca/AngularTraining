@@ -1,14 +1,34 @@
-var someText = "some text.\nagain and again. this is a sample text.\nwe are using for this assignment.\na cat goes up and up on a tree. a bog is barking.\nsome text again for the assignment";
+var someText = "some text\nagain and again. this is a sample text\nwe are using for this assignment\na cat goes up and up on a tree. a dog is barking\nsome text again for the assignment";
 console.log("\n-------------Original Text--------------");
-var text = someText.split("\n");
+var text = someText.trim().split("\n");
 text.forEach(display);
+console.log("\n-------------Text in statement case--------------");
+text.forEach(displayInStateMentCase);
 console.log("\n-------------Number of words--------------");
 printNumberOfWords(text);
 console.log("\n-------------Following are the words contain 'a'--------------");
 printWordWithSubString(text, "a");
 console.log("\n-------------Matching words--------------");
 displayNumberOfMatchingWords(text);
-function displayInStateMentCase(line) { }
+function displayInStateMentCase(line) {
+    var newLine = "";
+    var words = line.split(" ");
+    for (var wordIndex = 0; wordIndex < words.length; wordIndex++) {
+        if (words[wordIndex] === "." || words[wordIndex].endsWith(".")) {
+            newLine += " " + words[wordIndex];
+            wordIndex++;
+            if (wordIndex < words.length) {
+                var newWord = words[wordIndex].charAt(0).toUpperCase() +
+                    words[wordIndex].substr(1).toLowerCase();
+                newLine += " " + newWord;
+            }
+        }
+        else {
+            newLine += " " + words[wordIndex];
+        }
+    }
+    console.log(newLine);
+}
 function display(line) {
     console.log(line);
 }
@@ -27,7 +47,7 @@ function printWordWithSubString(text, sub) {
         var words = getWords(line);
         for (var _a = 0, words_1 = words; _a < words_1.length; _a++) {
             var word = words_1[_a];
-            if (word.indexOf(sub) !== -1) {
+            if (word.includes(sub)) {
                 console.log(word);
             }
         }

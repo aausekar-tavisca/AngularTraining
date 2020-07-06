@@ -1,12 +1,15 @@
-let someText = `some text.
-again and again. this is a sample text.
-we are using for this assignment.
-a cat goes up and up on a tree. a bog is barking.
+let someText = `some text
+again and again. this is a sample text
+we are using for this assignment
+a cat goes up and up on a tree. a dog is barking
 some text again for the assignment`;
 
 console.log("\n-------------Original Text--------------");
-let text = someText.split("\n");
+let text = someText.trim().split("\n");
 text.forEach(display);
+
+console.log("\n-------------Text in statement case--------------");
+text.forEach(displayInStateMentCase);
 
 console.log("\n-------------Number of words--------------");
 printNumberOfWords(text);
@@ -16,7 +19,25 @@ printWordWithSubString(text, "a");
 
 console.log("\n-------------Matching words--------------");
 displayNumberOfMatchingWords(text);
-function displayInStateMentCase(line: string) {}
+function displayInStateMentCase(line: string) {
+  let newLine = "";
+  let words = line.split(" ");
+  for (let wordIndex = 0; wordIndex < words.length; wordIndex++) {
+    if (words[wordIndex] === "." || words[wordIndex].endsWith(".")) {
+      newLine += " " + words[wordIndex];
+      wordIndex++;
+      if (wordIndex < words.length) {
+        let newWord =
+          words[wordIndex].charAt(0).toUpperCase() +
+          words[wordIndex].substr(1).toLowerCase();
+        newLine += " " + newWord;
+      }
+    } else {
+      newLine += " " + words[wordIndex];
+    }
+  }
+  console.log(newLine);
+}
 
 function display(line: string) {
   console.log(line);
@@ -35,7 +56,7 @@ function printWordWithSubString(text: string[], sub: string) {
   for (let line of text) {
     let words = getWords(line);
     for (let word of words) {
-      if (word.indexOf(sub) !== -1) {
+      if (word.includes(sub)) {
         console.log(word);
       }
     }
