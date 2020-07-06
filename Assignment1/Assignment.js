@@ -1,12 +1,12 @@
 var someText = "some text.\nagain and again. this is a sample text.\nwe are using for this assignment.\na cat goes up and up on a tree. a bog is barking.\nsome text again for the assignment";
+console.log("\n-------------Original Text--------------");
 var text = someText.split("\n");
 text.forEach(display);
-console.log("-------------Number of words--------------");
+console.log("\n-------------Number of words--------------");
 printNumberOfWords(text);
-console.log("-------------Number of words--------------");
-console.log("Following are the words contain 'a'");
+console.log("\n-------------Following are the words contain 'a'--------------");
 printWordWithSubString(text, "a");
-console.log("-------------Matching words--------------");
+console.log("\n-------------Matching words--------------");
 displayNumberOfMatchingWords(text);
 function displayInStateMentCase(line) { }
 function display(line) {
@@ -27,7 +27,7 @@ function printWordWithSubString(text, sub) {
         var words = getWords(line);
         for (var _a = 0, words_1 = words; _a < words_1.length; _a++) {
             var word = words_1[_a];
-            if (word.includes(sub)) {
+            if (word.indexOf(sub) !== -1) {
                 console.log(word);
             }
         }

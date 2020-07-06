@@ -4,16 +4,17 @@ we are using for this assignment.
 a cat goes up and up on a tree. a bog is barking.
 some text again for the assignment`;
 
+console.log("\n-------------Original Text--------------");
 let text = someText.split("\n");
 text.forEach(display);
 
-console.log("-------------Number of words--------------");
+console.log("\n-------------Number of words--------------");
 printNumberOfWords(text);
 
-console.log("-------------Following are the words contain 'a'--------------");
+console.log("\n-------------Following are the words contain 'a'--------------");
 printWordWithSubString(text, "a");
 
-console.log("-------------Matching words--------------");
+console.log("\n-------------Matching words--------------");
 displayNumberOfMatchingWords(text);
 function displayInStateMentCase(line: string) {}
 
@@ -34,7 +35,7 @@ function printWordWithSubString(text: string[], sub: string) {
   for (let line of text) {
     let words = getWords(line);
     for (let word of words) {
-      if (word.includes(sub)) {
+      if (word.indexOf(sub) !== -1) {
         console.log(word);
       }
     }
