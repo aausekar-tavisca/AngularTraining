@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./ProductManager.js"></script>
+    <script>
+        window.onload = function () {
+            var productManager = new ProductManager();
+            var btnGet = document.getElementById("btnGet");
+            btnGet.addEventListener(
+                "click",
+                function () {
+                    var groupByList = document.getElementById("groupBy");
+                    var groupBy = groupByList.options[groupByList.selectedIndex].value;
+                    var prds = productManager.getProducts(groupBy);
+                    //console.log("Result" + JSON.stringify(prds));
+                    console.log(prds);
+                },
+                false
+            );
+
+            var btnAdd = document.getElementById("btnAdd");
+            btnAdd.addEventListener(
+                "click",
+                function () {
+                    var productName = document.getElementById("product_name").value;
+                    var productCategory = document.getElementById("product_category").value;
+                    var productManufacturer = document.getElementById("product_manufacturer").value;
+                    var productDescription = document.getElementById("product_description").value;
+                    var productPrice = document.getElementById("product_price").value;
+                    var newProduct = new CreateProductRequest(productName, productCategory,
+                        productManufacturer, productDescription, productPrice);
+                    var response = productManager.addProduct(newProduct);
+                    console.log(response.message);
+                },
+                false
+            );
+
+            var btnUpdate = document.getElementById("btnUpdate");
+            btnUpdate.addEventListener(
+                "click",
+                function () {
+                    var productId = document.getElementById("product_id").value;
+                    var productName = document.getElementById("new_product_name").value;
+                    var productCategory = document.getElementById("new_product_category").value;
+                    var productManufacturer = document.getElementById("new_product_manufacturer").value;
+                    var productDescription = document.getElementById("new_product_description").value;
+                    var productPrice = document.getElementById("new_product_price").value;
+                    var newProduct = new UpdateProductRequest(productId, productName, productCategory,
+                        productManufacturer, productDescription, productPrice);
+                    var response = productManager.updateProduct(newProduct);
+                    console.log(response.message);
+                },
+                false
+            );
+
+            var btnDelete = document.getElementById("btnDelete");
+            btnDelete.addEventListener("click", function () {
+                var productId = document.getElementById("delete_product_id").value;
+                var response = productManager.deleteProduct(productId);
+                console.log(response.message);
+            }, false);
+        };
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Add New Product</h1>
+        <div>
+            <input type="text" name="" id="product_name" placeholder="Product Name" />
+            <input type="text" name="" id="product_category" placeholder="Product Category" />
+            <input type="text" name="" id="product_manufacturer" placeholder="Product Manufacturer" />
+            <input type="text" name="" id="product_description" placeholder="Product Description" />
+            <input type="text" name="" id="product_price" placeholder="Product Price" />
+        </div>
+        <input type="button" value="Add Product" id="btnAdd" />
+    </div>
+    <div>
+        <h1>Update Product</h1>
+        <div>
+            <input type="text" name="" id="product_id" placeholder="Id of a product to be updated" />
+            <input type="text" name="" id="new_product_name" placeholder="Product Name" />
+            <input type="text" name="" id="new_product_category" placeholder="Product Category" />
+            <input type="text" name="" id="new_product_manufacturer" placeholder="Product Manufacturer" />
+            <input type="text" name="" id="new_product_description" placeholder="Product Description" />
+            <input type="text" name="" id="new_product_price" placeholder="Product Price" />
+        </div>
+        <input type="button" value="Update Product" id="btnUpdate" />
+    </div>
+    <div>
+        <h1>Delete Product</h1>
+        <input type="text" name="" id="delete_product_id" placeholder="Product Id" />
+        <input type="button" value="Delete Product" id="btnDelete" />
+    </div>
+    <div>
+        <h2>Fetch Product Details</h2>
+        <input type="button" value="Get Products" id="btnGet" />
+        <select name="groupBy" id="groupBy">
+            <option value="all">All</option>
+            <option value="category">Category</option>
+            <option value="manufacturer">Manufacturer</option>
+        </select>
+    </div>
+
+</body>
+
+</html>

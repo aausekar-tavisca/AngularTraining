@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/aausekar-tavisca/AngularTraining/issues"
   },
-  "homepage": "https://github.com/aausekar-tavisca/AngularTraining#readme"
+  "homepage": "https://github.com/aausekar-tavisca/AngularTraining#readme",
+  "dependencies": {
+    "guid-typescript": "^1.0.9"
+  }
 }
