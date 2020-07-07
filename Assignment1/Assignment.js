@@ -1,4 +1,4 @@
-var someText = "some text\nagain and again. this is a sample text\nwe are using for this assignment\na cat goes up and up on a tree. a dog is barking\nsome text again for the assignment";
+var someText = "some text\nagain and again. this is a sample text\nwe are using for this assignment\na cat goes up and up on a tree. a dog Is barking\nsome text again for the assignment";
 console.log("\n-------------Original Text--------------");
 var text = someText.trim().split("\n");
 text.forEach(display);
@@ -14,7 +14,8 @@ function displayInStateMentCase(line) {
     var newLine = "";
     var words = line.split(" ");
     for (var wordIndex = 0; wordIndex < words.length; wordIndex++) {
-        if (words[wordIndex] === "." || words[wordIndex].endsWith(".")) {
+        if (words[wordIndex] === "." ||
+            words[wordIndex].charAt(words[wordIndex].length - 1) === ".") {
             newLine += " " + words[wordIndex];
             wordIndex++;
             if (wordIndex < words.length) {
@@ -47,7 +48,7 @@ function printWordWithSubString(text, sub) {
         var words = getWords(line);
         for (var _a = 0, words_1 = words; _a < words_1.length; _a++) {
             var word = words_1[_a];
-            if (word.includes(sub)) {
+            if (word.search(sub) !== -1) {
                 console.log(word);
             }
         }

@@ -23,7 +23,10 @@ function displayInStateMentCase(line: string) {
   let newLine = "";
   let words = line.split(" ");
   for (let wordIndex = 0; wordIndex < words.length; wordIndex++) {
-    if (words[wordIndex] === "." || words[wordIndex].endsWith(".")) {
+    if (
+      words[wordIndex] === "." ||
+      words[wordIndex].charAt(words[wordIndex].length - 1) === "."
+    ) {
       newLine += " " + words[wordIndex];
       wordIndex++;
       if (wordIndex < words.length) {
@@ -56,7 +59,7 @@ function printWordWithSubString(text: string[], sub: string) {
   for (let line of text) {
     let words = getWords(line);
     for (let word of words) {
-      if (word.includes(sub)) {
+      if (word.search(sub) !== -1) {
         console.log(word);
       }
     }
