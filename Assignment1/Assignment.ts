@@ -1,3 +1,6 @@
+class KeyValuePair {
+  constructor(public Key: string, public Value: number) {}
+}
 let someText = `some text
 again and again. this is a sample text
 we are using for this assignment
@@ -67,22 +70,24 @@ function printWordWithSubString(text: string[], sub: string) {
 }
 
 function displayNumberOfMatchingWords(text: string[]) {
-  let dictionary = new Object();
+  let dictionary = new Array<KeyValuePair>();
   for (let line of text) {
     let words = getWords(line);
     for (let word of words) {
-      if (dictionary[word] === undefined) {
-        dictionary[word] = 1;
+      let pairIndex = dictionary.findIndex((p) => p.Key === word);
+      if (pairIndex == -1) {
+        dictionary.push(new KeyValuePair(word, 1));
       } else {
-        dictionary[word] += 1;
+        dictionary[pairIndex].Value += 1;
       }
     }
   }
-  Object.keys(dictionary).forEach(function (key) {
-    if (dictionary[key] > 1) {
-      console.log("'" + key + "' occurs " + dictionary[key] + " times.");
+
+  for (let pair of dictionary) {
+    if (pair.Value > 1) {
+      console.log("'" + pair.Key + "' occurs " + pair.Value + " times.");
     }
-  });
+  }
 }
 
 function getWords(line: string): string[] {
