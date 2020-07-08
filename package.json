@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/aausekar-tavisca/AngularTraining#readme",
   "dependencies": {
+    "@types/node": "^12.7.4",
     "guid-typescript": "^1.0.9"
   }
 }
