@@ -192,10 +192,8 @@ var ProductManager = /** @class */ (function () {
         //check if price is not negative
         var price = parseInt(newProductRequest.Price);
         if (isNaN(price) || price <= 0) {
-            console.log("Inside invalid price");
-            return new ModelState("A product price should be greater than zero", false);
+            return new ModelState("Product price should be greater than zero", false);
         }
-        console.log("Outside invalid price");
         //check if description is not more than 100 character
         if (newProductRequest.Description.length > 100) {
             return new ModelState("A product description should not be more than 100 character", false);
